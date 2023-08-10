@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 function Header(props) {
   return (
@@ -29,9 +30,9 @@ function Header(props) {
 						{/* LOGO */}
 						<div className="col-md-9">
 							<div className="header-logo">
-								<a href="#" className="logo">
+								<Link  to="/" className="logo">
 									<img src="./img/logo.png" alt="" />
-								</a>
+								</Link>
 							</div>
 						</div>
 						{/* /LOGO */} 						

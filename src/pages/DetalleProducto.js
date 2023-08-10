@@ -7,14 +7,6 @@ import Navigator from '../components/Navigator'
 function DetalleProducto(props) {
   return (
         <>
-            {/* HEADER */}
-            <Header />
-            {/* /HEADER */}
-    
-            {/* NAVIGATION */}
-            <Navigator/>
-            {/* /NAVIGATION */}
-    
             {/* BREADCRUMB */}
             <div id="breadcrumb" className="section">
                 {/* container */}
@@ -216,7 +208,7 @@ function DetalleProducto(props) {
                                                                 <i className="fa fa-star"></i>
                                                             </div>
                                                             <div className="rating-progress">
-                                                                <div style="width: 80%;"></div>
+                                                                <div></div>
                                                             </div>
                                                             <span className="sum">3</span>
                                                         </li>
@@ -229,7 +221,7 @@ function DetalleProducto(props) {
                                                                 <i className="fa fa-star-o"></i>
                                                             </div>
                                                             <div className="rating-progress">
-                                                                <div style="width: 60%;"></div>
+                                                                <div ></div>
                                                             </div>
                                                             <span className="sum">2</span>
                                                         </li>
@@ -551,10 +543,6 @@ function DetalleProducto(props) {
                 {/* /container */}
             </div>
             {/* /NEWSLETTER */}
-    
-            {/* FOOTER */}
-            <Footer/>
-            {/* /FOOTER */}
     
             {/* jQuery Plugins */}
            
