@@ -4,11 +4,17 @@ import Header from '../components/Header'
 import Navigator from '../components/Navigator'
 import Footer from '../components/Footer'
 import { Link } from 'react-router-dom'
-
+import axios from 'axios';
+import { ProductosContext } from '../context/ProductosContext'
 
 function Productos(props) {
-  return (
+	
+	
+
+	return (
     <>
+	    <ProductosContext value={Productos(ProductosContext.id)}/>
+
     {/*<Header />
 
 		<Navigator/>
