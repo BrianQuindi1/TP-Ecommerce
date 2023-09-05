@@ -6,13 +6,11 @@ import DetalleProducto from '../pages/DetalleProducto';
 import { Link } from 'react-router-dom';
 
 
-function Producto() {
-    
-
-    const { title, price, category, images} = useContext(ProductosContext);
+function Producto() {    
+    const { productos} = useContext(ProductosContext);
+	const {title, price, category, images} = productos || {};
 
   return (
-    
     <div className="col-md-4 col-xs-6">
               <Link to="/detalleProducto">
 								<div className="product">

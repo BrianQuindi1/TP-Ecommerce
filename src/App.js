@@ -7,13 +7,13 @@ import Navigator from "./components/Navigator";
 import Home from "./pages/Home.js";
 import Productos from "./pages/Productos.js";
 import DetalleProducto from "./pages/DetalleProducto";
-import { ProductosContext } from "./context/ProductosContext";
+import ProductosProvider from "./context/ProductosContext";
 
 
 
 function App() {
   return (
-    <>
+    <ProductosProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -25,7 +25,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </>
+    </ProductosProvider>
   );
 }
 

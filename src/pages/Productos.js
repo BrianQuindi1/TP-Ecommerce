@@ -1,10 +1,10 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+/*import PropTypes from 'prop-types'
 import Header from '../components/Header'
 import Navigator from '../components/Navigator'
-import Footer from '../components/Footer'
+import Footer from '../components/Footer'*/
 import { Link } from 'react-router-dom'
-import axios from 'axios';
+//import axios from 'axios';
 import { ProductosContext } from '../context/ProductosContext'
 
 function Productos(props) {
