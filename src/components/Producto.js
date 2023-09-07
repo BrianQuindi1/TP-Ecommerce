@@ -1,21 +1,19 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios';
-import { ProductosContext } from '../context/ProductosContext';
 import DetalleProducto from '../pages/DetalleProducto';
 import { Link } from 'react-router-dom';
 
 
-function Producto() {    
-    const { productos} = useContext(ProductosContext);
-	const {title, price, category, images} = productos || {};
+function Producto({producto}) {        
+	const {title, price, category, images, thumbnail} = producto || {};
 
   return (
     <div className="col-md-4 col-xs-6">
               <Link to="/detalleProducto">
 								<div className="product">
 									<div className="product-img">
-										<img src={images} alt=""/>
+										<img src={thumbnail} alt=""/>
 										<div className="product-label">
 											<span className="new">NEW</span>
 										</div>

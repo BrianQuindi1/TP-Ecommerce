@@ -1,9 +1,17 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import PropTypes from 'prop-types'
 import Producto from '../components/Producto'
+import { ProductosContext } from '../context/ProductosContext'
 
-function Home(props) {
+function Home(props) {  
+  const { productos} = useContext(ProductosContext);
+	const { id } = productos || {};  
+  
   return (
+    <>
+  
+    {/*<Producto value={id}/>*/}
+    
     <div className="section">			
 			<div className="container">				
 				<div className="row">
@@ -21,7 +29,7 @@ function Home(props) {
                   </div>
                   <div className="product-body">
                     <p className="product-category">Category</p>
-                    <h3 className="product-name"><a href="#">product name goes here</a></h3>
+                    <h3 className="product-name"><a href="#">{/*ProductosContext.response.data.products.name*/} ssss</a></h3>
                     <h4 className="product-price">$980.00 <del className="product-old-price">$990.00</del></h4>
                     <div className="product-rating">
                       <i className="fa fa-star"></i>
@@ -106,9 +114,10 @@ function Home(props) {
         </div>
       </div>
     </div>
+    </>
   )
 }
 
 Home.propTypes = {}
 
-export default Home
+export default Home;

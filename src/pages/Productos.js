@@ -1,19 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 /*import PropTypes from 'prop-types'
 import Header from '../components/Header'
 import Navigator from '../components/Navigator'
 import Footer from '../components/Footer'*/
 import { Link } from 'react-router-dom'
-//import axios from 'axios';
+import axios from 'axios';
 import { ProductosContext } from '../context/ProductosContext'
 
 function Productos(props) {
 	
-	
+	const apiUrl = 'https://dummyjson.com/products';
+
+	const [productos, setProductos] = useState([]);
+	let cargarProductos = () => {
+		axios
+		.get(apiUrl)
+		.then(response => {
+            setProductos(response.data.products);
+        })
+		.catch((error) => {
+			console.log(error);
+		});
+	}
+	useEffect(() => {
+		cargarProductos();
+	}, []);
 
 	return (
-    <>
-	    <ProductosContext value={Productos(ProductosContext.id)}/>
+    <>	    
 
     {/*<Header />
 
@@ -24,7 +38,7 @@ function Productos(props) {
 			{/* container */}
 			<div className="container">
 				{/* row */}
-				<div className="row">
+				{/*<div className="row">
 					<div className="col-md-12">
 						<ul className="breadcrumb-tree">
 							<li><a href="#">Home</a></li>
@@ -33,7 +47,7 @@ function Productos(props) {
 							<li className="active">Headphones (227,490 Results)</li>
 						</ul>
 					</div>
-				</div>
+</div>*/}
 				{/* /row */}
 			</div>
 			{/* /container */}
@@ -227,330 +241,47 @@ function Productos(props) {
 					{/* /ASIDE */}
 
 					{/* STORE */}
-					<div id="store" className="col-md-9">
-						{/* store top filter */}
-						<div className="store-filter clearfix">
-							<div className="store-sort">
-								<label>
-									Sort By:
-									<select className="input-select">
-										<option value="0">Popular</option>
-										<option value="1">Position</option>
-									</select>
-								</label>
-
-								<label>
-									Show:
-									<select className="input-select">
-										<option value="0">20</option>
-										<option value="1">50</option>
-									</select>
-								</label>
-							</div>
-							<ul className="store-grid">
-								<li className="active"><i className="fa fa-th"></i></li>
-								<li><a href="#"><i className="fa fa-th-list"></i></a></li>
-							</ul>
-						</div>
-						{/* /store top filter */}
-
-						{/* store products */}
-						<div className="row">
-							{/* product */}
-							<div className="col-md-4 col-xs-6">
-              <Link to="/detalleProducto">
-								<div className="product">
-									<div className="product-img">
-										<img src="./img/product01.png" alt=""/>
-										<div className="product-label">
-											<span className="sale">-30%</span>
-											<span className="new">NEW</span>
-										</div>
-									</div>
-									<div className="product-body">
-										<p className="product-category">Category</p>
-										<h3 className="product-name"><Link to="/detalleProducto">product name goes here</Link></h3>
-										<h4 className="product-price">$980.00 <del className="product-old-price">$990.00</del></h4>
-										<div className="product-rating">
-											<i className="fa fa-star"></i>
-											<i className="fa fa-star"></i>
-											<i className="fa fa-star"></i>
-											<i className="fa fa-star"></i>
-											<i className="fa fa-star"></i>
-										</div>
-										<div className="product-btns">
-											<button className="add-to-wishlist"><i className="fa fa-heart-o"></i><span className="tooltipp">add to wishlist</span></button>
-											<button className="add-to-compare"><i className="fa fa-exchange"></i><span className="tooltipp">add to compare</span></button>
-											<button className="quick-view"><i className="fa fa-eye"></i><span className="tooltipp">quick view</span></button>
-										</div>
-									</div>
-									<div className="add-to-cart">
-										<button className="add-to-cart-btn"><i className="fa fa-shopping-cart"></i> add to cart</button>
-									</div>
+		{/* ACA ESTAN TODOS LOS PRODUCTOS (REEMPLAZAR X UN MAP/FOREACH)*/}
+		<div className="row">
+		
+			
+					{productos.map(producto=> (
+						<div className="col-md-4 col-xs-6">
+						<Link to="/detalleProducto">
+						<div className="product" key={producto.id}>
+							<div className="product-img">
+								<img src={producto.thumbnail} alt=""/>
+								<div className="product-label">
+									<span className="sale">-30%</span>
+									<span className="new">NEW</span>
 								</div>
-                </Link>
 							</div>
-							{/* /product */}
-
-							{/* product */}
-							<div className="col-md-4 col-xs-6">
-              <Link to="/detalleProducto">
-								<div className="product">
-									<div className="product-img">
-										<img src="./img/product02.png" alt=""/>
-										<div className="product-label">
-											<span className="new">NEW</span>
-										</div>
-									</div>
-									<div className="product-body">
-										<p className="product-category">Category</p>
-										<h3 className="product-name"><Link to="/detalleProducto">product name goes here</Link></h3>
-										<h4 className="product-price">$980.00 <del className="product-old-price">$990.00</del></h4>
-										<div className="product-rating">
-											<i className="fa fa-star"></i>
-											<i className="fa fa-star"></i>
-											<i className="fa fa-star"></i>
-											<i className="fa fa-star"></i>
-											<i className="fa fa-star-o"></i>
-										</div>
-										<div className="product-btns">
-											<button className="add-to-wishlist"><i className="fa fa-heart-o"></i><span className="tooltipp">add to wishlist</span></button>
-											<button className="add-to-compare"><i className="fa fa-exchange"></i><span className="tooltipp">add to compare</span></button>
-											<button className="quick-view"><i className="fa fa-eye"></i><span className="tooltipp">quick view</span></button>
-										</div>
-									</div>
-									<div className="add-to-cart">
-										<button className="add-to-cart-btn"><i className="fa fa-shopping-cart"></i> add to cart</button>
-									</div>
+							<div className="product-body">
+								<p className="product-category">{producto.category}</p>
+								<h3 className="product-name"><Link to="/detalleProducto">{producto.title}</Link></h3>
+								<h4 className="product-price">$980.00 <del className="product-old-price">{producto.price}</del></h4>
+								<div className="product-rating">
+									<i className="fa fa-star"></i>
+									<i className="fa fa-star"></i>
+									<i className="fa fa-star"></i>
+									<i className="fa fa-star"></i>
+									<i className="fa fa-star"></i>
 								</div>
-                </Link> 
-							</div>
-							{/* /product */}
-
-							<div className="clearfix visible-sm visible-xs"></div>
-
-							{/* product */}
-							<div className="col-md-4 col-xs-6">
-              <Link to="/detalleProducto">
-								<div className="product">
-									<div className="product-img">
-										<img src="./img/product03.png" alt=""/>
-									</div>
-									<div className="product-body">
-										<p className="product-category">Category</p>
-										<h3 className="product-name"><Link to="/detalleProducto">product name goes here</Link></h3>
-										<h4 className="product-price">$980.00 <del className="product-old-price">$990.00</del></h4>
-										<div className="product-rating">
-										</div>
-										<div className="product-btns">
-											<button className="add-to-wishlist"><i className="fa fa-heart-o"></i><span className="tooltipp">add to wishlist</span></button>
-											<button className="add-to-compare"><i className="fa fa-exchange"></i><span className="tooltipp">add to compare</span></button>
-											<button className="quick-view"><i className="fa fa-eye"></i><span className="tooltipp">quick view</span></button>
-										</div>
-									</div>
-									<div className="add-to-cart">
-										<button className="add-to-cart-btn"><i className="fa fa-shopping-cart"></i> add to cart</button>
-									</div>
+								<div className="product-btns">
+									<button className="add-to-wishlist"><i className="fa fa-heart-o"></i><span className="tooltipp">add to wishlist</span></button>
+									<button className="add-to-compare"><i className="fa fa-exchange"></i><span className="tooltipp">add to compare</span></button>
+									<button className="quick-view"><i className="fa fa-eye"></i><span className="tooltipp">quick view</span></button>
 								</div>
-                </Link>
 							</div>
-							{/* /product */}
-
-							<div className="clearfix visible-lg visible-md"></div>
-
-							{/* product */}
-							<div className="col-md-4 col-xs-6">
-                <Link to="/detalleProducto">
-                  <div className="product">
-                    <div className="product-img">
-                      <img src="./img/product04.png" alt=""/>
-                    </div>
-                    <div className="product-body">
-                      <p className="product-category">Category</p>
-                      <h3 className="product-name"><Link to="/detalleProducto">product name goes here</Link></h3>
-                      <h4 className="product-price">$980.00 <del className="product-old-price">$990.00</del></h4>
-                      <div className="product-rating">
-                      </div>
-                      <div className="product-btns">
-                        <button className="add-to-wishlist"><i className="fa fa-heart-o"></i><span className="tooltipp">add to wishlist</span></button>
-                        <button className="add-to-compare"><i className="fa fa-exchange"></i><span className="tooltipp">add to compare</span></button>
-                        <button className="quick-view"><i className="fa fa-eye"></i><span className="tooltipp">quick view</span></button>
-                      </div>
-                    </div>
-                    <div className="add-to-cart">
-                      <button className="add-to-cart-btn"><i className="fa fa-shopping-cart"></i> add to cart</button>
-                    </div>
-                  </div>
-                </Link>
+							<div className="add-to-cart">
+								<button className="add-to-cart-btn"><i className="fa fa-shopping-cart"></i> add to cart</button>
 							</div>
-							{/* /product */}
-
-							<div className="clearfix visible-sm visible-xs"></div>
-
-							{/* product */}
-							<div className="col-md-4 col-xs-6">
-                <Link to="/detalleProducto">
-                  <div className="product">
-                    <div className="product-img">
-                      <img src="./img/product05.png" alt=""/>
-                    </div>
-                    <div className="product-body">
-                      <p className="product-category">Category</p>
-                      <h3 className="product-name"><Link to="/detalleProducto">product name goes here</Link></h3>
-                      <h4 className="product-price">$980.00 <del className="product-old-price">$990.00</del></h4>
-                      <div className="product-rating">
-                      </div>
-                      <div className="product-btns">
-                        <button className="add-to-wishlist"><i className="fa fa-heart-o"></i><span className="tooltipp">add to wishlist</span></button>
-                        <button className="add-to-compare"><i className="fa fa-exchange"></i><span className="tooltipp">add to compare</span></button>
-                        <button className="quick-view"><i className="fa fa-eye"></i><span className="tooltipp">quick view</span></button>
-                      </div>
-                    </div>
-                    <div className="add-to-cart">
-                      <button className="add-to-cart-btn"><i className="fa fa-shopping-cart"></i> add to cart</button>
-                    </div>
-                  </div>
-                </Link>
-							</div>
-							{/* /product */}
-
-							{/* product */}
-							<div className="col-md-4 col-xs-6">
-                <Link to="/detalleProducto">
-                  <div className="product">
-                    <div className="product-img">
-                      <img src="./img/product06.png" alt=""/>
-                    </div>
-                    <div className="product-body">
-                      <p className="product-category">Category</p>
-                      <h3 className="product-name"><Link to="/detalleProducto">product name goes here</Link></h3>
-                      <h4 className="product-price">$980.00 <del className="product-old-price">$990.00</del></h4>
-                      <div className="product-rating">
-                        <i className="fa fa-star"></i>
-                        <i className="fa fa-star"></i>
-                        <i className="fa fa-star"></i>
-                        <i className="fa fa-star"></i>
-                        <i className="fa fa-star-o"></i>
-                      </div>
-                      <div className="product-btns">
-                        <button className="add-to-wishlist"><i className="fa fa-heart-o"></i><span className="tooltipp">add to wishlist</span></button>
-                        <button className="add-to-compare"><i className="fa fa-exchange"></i><span className="tooltipp">add to compare</span></button>
-                        <button className="quick-view"><i className="fa fa-eye"></i><span className="tooltipp">quick view</span></button>
-                      </div>
-                    </div>
-                    <div className="add-to-cart">
-                      <button className="add-to-cart-btn"><i className="fa fa-shopping-cart"></i> add to cart</button>
-                    </div>
-                  </div>
-                </Link>
-							</div>
-							{/* /product */}
-
-							<div className="clearfix visible-lg visible-md visible-sm visible-xs"></div>
-
-							{/* product */}
-							<div className="col-md-4 col-xs-6">
-                <Link to="/detalleProducto">
-                  <div className="product">
-                    <div className="product-img">
-                      <img src="./img/product07.png" alt=""/>
-                    </div>
-                    <div className="product-body">
-                      <p className="product-category">Category</p>
-                      <h3 className="product-name"><Link to="/detalleProducto">product name goes here</Link></h3>
-                      <h4 className="product-price">$980.00 <del className="product-old-price">$990.00</del></h4>
-                      <div className="product-rating">
-                        <i className="fa fa-star"></i>
-                        <i className="fa fa-star"></i>
-                        <i className="fa fa-star"></i>
-                        <i className="fa fa-star"></i>
-                        <i className="fa fa-star"></i>
-                      </div>
-                      <div className="product-btns">
-                        <button className="add-to-wishlist"><i className="fa fa-heart-o"></i><span className="tooltipp">add to wishlist</span></button>
-                        <button className="add-to-compare"><i className="fa fa-exchange"></i><span className="tooltipp">add to compare</span></button>
-                        <button className="quick-view"><i className="fa fa-eye"></i><span className="tooltipp">quick view</span></button>
-                      </div>
-                    </div>
-                    <div className="add-to-cart">
-                      <button className="add-to-cart-btn"><i className="fa fa-shopping-cart"></i> add to cart</button>
-                    </div>
-                  </div>
-                </Link>
-							</div>
-							{/* /product */}
-
-							{/* product */}
-							<div className="col-md-4 col-xs-6">
-                <Link to="/detalleProducto">
-                  <div className="product">
-                    <div className="product-img">
-                      <img src="./img/product08.png" alt=""/>
-                    </div>
-                    <div className="product-body">
-                      <p className="product-category">Category</p>
-                      <h3 className="product-name"><Link to="/detalleProducto">product name goes here</Link></h3>
-                      <h4 className="product-price">$980.00 <del className="product-old-price">$990.00</del></h4>
-                      <div className="product-rating">
-                      </div>
-                      <div className="product-btns">
-                        <button className="add-to-wishlist"><i className="fa fa-heart-o"></i><span className="tooltipp">add to wishlist</span></button>
-                        <button className="add-to-compare"><i className="fa fa-exchange"></i><span className="tooltipp">add to compare</span></button>
-                        <button className="quick-view"><i className="fa fa-eye"></i><span className="tooltipp">quick view</span></button>
-                      </div>
-                    </div>
-                    <div className="add-to-cart">
-                      <button className="add-to-cart-btn"><i className="fa fa-shopping-cart"></i> add to cart</button>
-                    </div>
-                  </div>
-                </Link>
-							</div>
-							{/* /product */}
-
-							<div className="clearfix visible-sm visible-xs"></div>
-
-							{/* product */}
-							<div className="col-md-4 col-xs-6">
-                <Link to="/detalleProducto">
-                  <div className="product">
-                    <div className="product-img">
-                      <img src="./img/product09.png" alt=""/>
-                    </div>
-                    <div className="product-body">
-                      <p className="product-category">Category</p>
-                      <h3 className="product-name"><Link to="/detalleProducto">product name goes here</Link></h3>
-                      <h4 className="product-price">$980.00 <del className="product-old-price">$990.00</del></h4>
-                      <div className="product-rating">
-                      </div>
-                      <div className="product-btns">
-                        <button className="add-to-wishlist"><i className="fa fa-heart-o"></i><span className="tooltipp">add to wishlist</span></button>
-                        <button className="add-to-compare"><i className="fa fa-exchange"></i><span className="tooltipp">add to compare</span></button>
-                        <button className="quick-view"><i className="fa fa-eye"></i><span className="tooltipp">quick view</span></button>
-                      </div>
-                    </div>
-                    <div className="add-to-cart">
-                      <button className="add-to-cart-btn"><i className="fa fa-shopping-cart"></i> add to cart</button>
-                    </div>
-                  </div>
-                </Link>
-							</div>
-							{/* /product */}
 						</div>
-						{/* /store products */}
-
-						{/* store bottom filter */}
-						<div className="store-filter clearfix">
-							<span className="store-qty">Showing 20-100 products</span>
-							<ul className="store-pagination">
-								<li className="active">1</li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#"><i className="fa fa-angle-right"></i></a></li>
-							</ul>
-						</div>
-						{/* /store bottom filter */}
+		</Link>
+		</div>
+					))}
 					</div>
+					
 					{/* /STORE */}
 				</div>
 				{/* /row */}
