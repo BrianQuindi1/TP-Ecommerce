@@ -1,11 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import Navigator from '../components/Navigator'
+import axios from 'axios'
+import { useParams } from 'react-router-dom'
+
 
 function DetalleProducto(props) {
-  return (
+    const {productId} = useParams();
+    const apiUrl = {};
+
+	const [productos, setProductos] = useState([]);
+	let cargarProductos = () => {
+		axios
+		.get("https://dummyjson.com/products/"+productId)
+		.then(response => {
+            setProductos(response.data.products);
+        })
+		.catch((error) => {
+			console.log(error);
+		});
+	}
+	useEffect(() => {
+		cargarProductos();
+	}, []);
+    return (
         <>
             {/* BREADCRUMB */}
             <div id="breadcrumb" className="section">
@@ -19,7 +39,7 @@ function DetalleProducto(props) {
                                 <li><a href="#">All Categories</a></li>
                                 <li><a href="#">Accessories</a></li>
                                 <li><a href="#">Headphones</a></li>
-                                <li className="active">Product name goes here</li>
+                                <li className="active">{productos.title}</li>
                             </ul>
                         </div>
                     </div>

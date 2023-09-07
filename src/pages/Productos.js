@@ -124,84 +124,11 @@ function Productos(props) {
 						</div>
 						{/* /aside Widget */}
 
-						{/* aside Widget */}
-						<div className="aside">
-							<h3 className="aside-title">Price</h3>
-							<div className="price-filter">
-								<div id="price-slider"></div>
-								<div className="input-number price-min">
-									<input id="price-min" type="number"/>
-									<span className="qty-up">+</span>
-									<span className="qty-down">-</span>
-								</div>
-								<span>-</span>
-								<div className="input-number price-max">
-									<input id="price-max" type="number"/>
-									<span className="qty-up">+</span>
-									<span className="qty-down">-</span>
-								</div>
-							</div>
-						</div>
-						{/* /aside Widget */}
+						
+						
 
 						{/* aside Widget */}
-						<div className="aside">
-							<h3 className="aside-title">Brand</h3>
-							<div className="checkbox-filter">
-								<div className="input-checkbox">
-									<input type="checkbox" id="brand-1"/>
-									<label for="brand-1">
-										<span></span>
-										SAMSUNG
-										<small>(578)</small>
-									</label>
-								</div>
-								<div className="input-checkbox">
-									<input type="checkbox" id="brand-2"/>
-									<label for="brand-2">
-										<span></span>
-										LG
-										<small>(125)</small>
-									</label>
-								</div>
-								<div className="input-checkbox">
-									<input type="checkbox" id="brand-3"/>
-									<label for="brand-3">
-										<span></span>
-										SONY
-										<small>(755)</small>
-									</label>
-								</div>
-								<div className="input-checkbox">
-									<input type="checkbox" id="brand-4"/>
-									<label for="brand-4">
-										<span></span>
-										SAMSUNG
-										<small>(578)</small>
-									</label>
-								</div>
-								<div className="input-checkbox">
-									<input type="checkbox" id="brand-5"/>
-									<label for="brand-5">
-										<span></span>
-										LG
-										<small>(125)</small>
-									</label>
-								</div>
-								<div className="input-checkbox">
-									<input type="checkbox" id="brand-6"/>
-									<label for="brand-6">
-										<span></span>
-										SONY
-										<small>(755)</small>
-									</label>
-								</div>
-							</div>
-						</div>
-						{/* /aside Widget */}
-
-						{/* aside Widget */}
-						<div className="aside">
+						{/*<div className="aside">
 							<h3 className="aside-title">Top selling</h3>
 							<div className="product-widget">
 								<div className="product-img">
@@ -235,7 +162,7 @@ function Productos(props) {
 									<h4 className="product-price">$980.00 <del className="product-old-price">$990.00</del></h4>
 								</div>
 							</div>
-						</div>
+</div>*/}
 						{/* /aside Widget */}
 					</div>
 					{/* /ASIDE */}
@@ -247,19 +174,19 @@ function Productos(props) {
 			
 					{productos.map(producto=> (
 						<div className="col-md-4 col-xs-6">
-						<Link to="/detalleProducto">
+						<Link to={"/detalleProducto/" + producto.id}>
 						<div className="product" key={producto.id}>
 							<div className="product-img">
 								<img src={producto.thumbnail} alt=""/>
 								<div className="product-label">
-									<span className="sale">-30%</span>
+									<span className="sale">{producto.discountPercentage}%</span>
 									<span className="new">NEW</span>
 								</div>
 							</div>
 							<div className="product-body">
 								<p className="product-category">{producto.category}</p>
-								<h3 className="product-name"><Link to="/detalleProducto">{producto.title}</Link></h3>
-								<h4 className="product-price">$980.00 <del className="product-old-price">{producto.price}</del></h4>
+								<h3 className="product-name"><Link to={"/detalleProducto/" + producto.id}>{producto.title}</Link></h3>
+								<h4 className="product-price">${producto.price - producto.discountPercentage} <del className="product-old-price">{producto.price}</del></h4>
 								<div className="product-rating">
 									<i className="fa fa-star"></i>
 									<i className="fa fa-star"></i>
