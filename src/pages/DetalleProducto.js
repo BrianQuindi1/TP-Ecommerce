@@ -8,10 +8,12 @@ import { useParams } from 'react-router-dom'
 
 
 function DetalleProducto(props) {
+    
     const {productId} = useParams();
     const apiUrl = {};
 
 	const [productos, setProductos] = useState([]);
+    
 	let cargarProductos = () => {
 		axios
 		.get("https://dummyjson.com/products/"+productId)
@@ -28,10 +30,12 @@ function DetalleProducto(props) {
     return (
         <>
             {/* BREADCRUMB */}
+    
             <div id="breadcrumb" className="section">
                 {/* container */}
                 <div className="container">
                     {/* row */}
+                    
                     <div className="row">
                         <div className="col-md-12">
                             <ul className="breadcrumb-tree">
@@ -39,11 +43,13 @@ function DetalleProducto(props) {
                                 <li><a href="#">All Categories</a></li>
                                 <li><a href="#">Accessories</a></li>
                                 <li><a href="#">Headphones</a></li>
-                                <li className="active">{productos.title}</li>
+                                <li className="active">{productos?.title}</li>
                             </ul>
                         </div>
-                    </div>
+                        
+                    </div> 
                     {/* /row */}
+                    
                 </div>
                 {/* /container */}
             </div>
@@ -101,8 +107,9 @@ function DetalleProducto(props) {
     
                         {/* Product details */}
                         <div className="col-md-5">
+                        
                             <div className="product-details">
-                                <h2 className="product-name">product name goes here</h2>
+                                <h2 className="product-name">{productos?.title}</h2>
                                 <div>
                                     <div className="product-rating">
                                         <i className="fa fa-star"></i>
@@ -166,7 +173,8 @@ function DetalleProducto(props) {
                                 </ul>
     
                             </div>
-                        </div>
+                            
+                        </div> 
                         {/* /Product details */}
     
                         {/* Product tab */}
@@ -186,7 +194,7 @@ function DetalleProducto(props) {
                                     <div id="tab1" className="tab-pane fade in active">
                                         <div className="row">
                                             <div className="col-md-12">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                                <p>{productos?.description}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -196,7 +204,7 @@ function DetalleProducto(props) {
                                     <div id="tab2" className="tab-pane fade in">
                                         <div className="row">
                                             <div className="col-md-12">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                                <p>{productos?.description}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -306,7 +314,7 @@ function DetalleProducto(props) {
                                                                 </div>
                                                             </div>
                                                             <div className="review-body">
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                                                                <p>{productos?.description}</p>
                                                             </div>
                                                         </li>
                                                         <li>
@@ -565,6 +573,7 @@ function DetalleProducto(props) {
             {/* /NEWSLETTER */}
     
             {/* jQuery Plugins */}
+    
            
     
         </>
