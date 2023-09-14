@@ -5,7 +5,7 @@ export const CategoriasContext = createContext();
 
 const CategoriasProvider = ({ children }) => {
     const [categorias, setCategorias] = useState([]);
-    const apiUrl = 'https://dummyjson.com/products/categories';
+    const apiUrl = 'https://dummyjson.com/products/categories/';
 
     useEffect(() => {
         axios.get(apiUrl)
