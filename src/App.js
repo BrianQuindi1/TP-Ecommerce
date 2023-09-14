@@ -8,11 +8,13 @@ import Home from "./pages/Home.js";
 import Productos from "./pages/Productos.js";
 import DetalleProducto from "./pages/DetalleProducto";
 import ProductosProvider from "./context/ProductosContext";
+import CategoriasProvider from "./context/CategoriasContext";
 
 
 
 function App() {
   return (
+    <CategoriasProvider>
     <ProductosProvider>
       <BrowserRouter>
         <Routes>
@@ -26,6 +28,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </ProductosProvider>
+    </CategoriasProvider>
   );
 }
 
