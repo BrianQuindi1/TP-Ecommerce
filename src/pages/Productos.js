@@ -4,14 +4,36 @@ import Header from '../components/Header'
 import Navigator from '../components/Navigator'
 import Footer from '../components/Footer'*/
 import { Link } from 'react-router-dom'
+import FilterOption from '../components/FilterOption';
 import axios from 'axios';
 import { ProductosContext } from '../context/ProductosContext'
 import Producto from '../components/Producto';
 import { CategoriasContext } from '../context/CategoriasContext';
 
+
 function Productos(props) {
 	const {productos} = useContext(ProductosContext)	
+	const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(false);
 	const {categorias} = useContext(CategoriasContext)
+	const [filter, setFilter] = useState([]);
+
+
+	useEffect(() => {
+        setLoading(true)
+
+        if (productos !== null || productos !== undefined) {
+            setLoading(false);
+            setData(productos);
+            setFilter(productos);
+        }
+
+    }, [productos])
+
+	const filterProduct = (category) => {
+        const updatedList = data.filter((product) => product.category === category);
+        setFilter(updatedList);
+    }
 
 	return (
     <>	    
@@ -54,18 +76,14 @@ function Productos(props) {
 							<h3 className="aside-title">Categories</h3>
 							<div className="checkbox-filter">
 							
-								{categorias.map(index=>  (
-								<div className="checkbox-filter">
-
-									<div className="input-checkbox">
-										<input type="checkbox" id="category-1"/>
-										<label for="category-1">
-											<span></span>
-											{index}
-											<small>(120)</small>
-										</label>
-									</div>
-								</div>))}															
+							<FilterOption onClickFunction={() => setFilter(data)} text="All" />
+                            {categorias.map((categoria, index) => {
+                                return (
+                                    <>
+                                		<FilterOption onClickFunction={() => filterProduct(categoria)} text={categoria} key={index} />
+                                    </>
+								)
+                            })}															
 							</div>
 						</div>
 						{/* /aside Widget */}
@@ -74,8 +92,9 @@ function Productos(props) {
 
 					{/* STORE */}					
 					<div className="row">			
-						{productos.map(producto=> (
-							<Producto producto={producto} />
+						{filter.map((producto=> {
+							return(
+							<Producto producto={producto} />)}
 						))}
 					</div>					
 					{/* /STORE */}

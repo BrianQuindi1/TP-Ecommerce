@@ -13,17 +13,22 @@ function DetalleProducto(props) {
     //const { productos} = useContext(ProductosContext);    
     const {productId} = useParams();
    // const apiUrl = {};
+   const [loading, setLoading] = useState(false);
 
 	const [productos, setProductos] = useState([]);
     
     //const {title, price, category, images, thumbnail} = productos || {};
 	useEffect(() => {
 	const cargarProductos = async () => {
+
+        setLoading(true);
+        
 		axios
 		.get("https://dummyjson.com/products/"+productId)
         .then((result) => {
             const response = result.data
             setProductos(response)
+            setLoading(false)
         })
 		/*.then(response => {
             setProductos(response.data.products);

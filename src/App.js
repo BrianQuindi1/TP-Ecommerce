@@ -9,7 +9,6 @@ import Productos from "./pages/Productos.js";
 import DetalleProducto from "./pages/DetalleProducto";
 import ProductosProvider from "./context/ProductosContext";
 import CategoriasProvider from "./context/CategoriasContext";
-import ProductosXCategoria from "./pages/ProductosXCategoria"
 
 
 
@@ -22,7 +21,6 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />}></Route>
             <Route path="/Productos" element={<Productos />}></Route>
-            <Route path="/ProductosXCategoria/:productCategory" element={<ProductosXCategoria />}></Route>
             <Route path="/contacto" element={<Contacto />}></Route>
             <Route path={"/detalleproducto/:productId" } element={<DetalleProducto />}></Route>
             <Route path="*" element={<h1>404</h1>}></Route>
