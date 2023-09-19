@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 
 
 function Producto({producto}) {        
-	const {title, price, category, discountPercentage, thumbnail} = producto || {};
+	const {id, title, price, category, discountPercentage, thumbnail} = producto || {};
 
   return (
     <div className="col-md-4 col-xs-6">
-              <Link to="/detalleProducto">
+              <Link to={"/detalleProducto/" + producto.id}>
 								<div className="product">
 									<div className="product-img">
 										<img src={thumbnail} alt=""/>
@@ -20,7 +20,7 @@ function Producto({producto}) {
 									</div>
 									<div className="product-body">
 										<p className="product-category">{category}</p>
-										<h3 className="product-name"><Link to="/detalleProducto">{title}</Link></h3>
+										<h3 className="product-name"><Link to={"/detalleProducto/" + producto.id}>{title}</Link></h3>
 										<h4 className="product-price">${price - discountPercentage}<del className="product-old-price">{price}</del></h4>
 										<div className="product-rating">
 											<i className="fa fa-star"></i>

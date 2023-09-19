@@ -5,7 +5,7 @@ import Header from '../components/Header'
 import Navigator from '../components/Navigator'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
-//import { ProductosContext } from '../context/ProductosContext'
+import { ProductosContext } from '../context/ProductosContext'
 
 
 function DetalleProducto(props) {

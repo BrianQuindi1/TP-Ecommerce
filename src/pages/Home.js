@@ -19,7 +19,12 @@ function Home(props) {
             {/* store products */}
             <div className="row">
               {/* product */}
-             <div className="col-md-4 col-xs-6">
+              {productos.map((producto=> {
+							return(
+							<Producto producto={producto} />)}
+						))}
+            
+            {/* <div className="col-md-4 col-xs-6">
                 <div className="product">
                   <div className="product-img">
                     <img src="./img/product02.png" alt="" />
@@ -29,7 +34,7 @@ function Home(props) {
                   </div>
                   <div className="product-body">
                     <p className="product-category">Category</p>
-                    <h3 className="product-name"><a href="#">{/*ProductosContext.response.data.products.name*/} ssss</a></h3>
+                    <h3 className="product-name"><a href="#">{/*ProductosContext.response.data.products.name} ssss</a></h3>
                     <h4 className="product-price">$980.00 <del className="product-old-price">$990.00</del></h4>
                     <div className="product-rating">
                       <i className="fa fa-star"></i>
@@ -48,7 +53,7 @@ function Home(props) {
                     <button className="add-to-cart-btn"><i className="fa fa-shopping-cart"></i> add to cart</button>
                   </div>
                 </div>
-              </div>
+              </div>*/}
               {/* /product */}
 
               {/* product */}
