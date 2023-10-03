@@ -1,24 +1,41 @@
-import React, { createContext, useState } from "react";
-
+import React, { createContext, useState, useEffect } from "react";
+import axios from "axios";
 
 export const CarritoContext = createContext();
 
 const CarritoProvider = (props) => {
-  const [carrito, setCarrito] = useState([]);
+  const [productos, setProductos] = useState([]);
+  const [cantProductos, setCantProductos] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
 
-  const addProduct = (product) => {
-    setCarrito([
-        ...carrito,
-        product
+  const addProduct = (producto) => {
+    setProductos([
+        ...productos,
+        producto
     ])
   }
 
-  if (carrito !== []) {
+  const updateTotalPrice = () => {
+    let price = 0;
+    productos.map((producto) => {
+      price += producto.price;
+    })
+    setTotalPrice(price);
+  }
+
+  useEffect(() => {
+    setCantProductos(productos.length);  
+    updateTotalPrice();
+  }, [productos]);
+
+  if (productos !== []) {
     return (
       <CarritoContext.Provider
         value={{
-            carrito,
-          addProduct
+          productos,
+          addProduct,
+          cantProductos,
+          totalPrice
         }}
       >
         {props.children}

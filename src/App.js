@@ -9,6 +9,7 @@ import Productos from "./pages/Productos.js";
 import DetalleProducto from "./pages/DetalleProducto";
 import ProductosProvider from "./context/ProductosContext";
 import CategoriasProvider from "./context/CategoriasContext";
+import PaginaCarrito from "./pages/PaginaCarrito.js";
 
 
 
@@ -22,6 +23,7 @@ function App() {
             <Route index element={<Home />}></Route>
             <Route path="/Productos" element={<Productos />}></Route>
             <Route path="/contacto" element={<Contacto />}></Route>
+            <Route path="/paginacarrito" element={<PaginaCarrito />}></Route>
             <Route path={"/detalleproducto/:productId" } element={<DetalleProducto />}></Route>
             <Route path="*" element={<h1>404</h1>}></Route>
           </Route>

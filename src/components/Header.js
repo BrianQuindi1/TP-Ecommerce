@@ -43,7 +43,9 @@ function Header(props) {
 							<div className="header-ctn">								
 
 								{/* Cart */}
+								<Link to={"/paginacarrito"}>
 								<Carrito/>
+								</Link>
 								{/* /Cart */}
 
 								{/* Menu Toogle */}
