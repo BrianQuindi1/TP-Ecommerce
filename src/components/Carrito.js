@@ -1,15 +1,19 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
 function Carrito() {
   return (
     <div className="dropdown">
-									<a className="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-										<i className="fa fa-shopping-cart"></i>
-										<span>Your Cart</span>
-										<div className="qty">0 </div>
-									</a>
-									{/* <div className="cart-dropdown">
+      <a
+        className="dropdown-toggle"
+        data-toggle="dropdown"
+        aria-expanded="true"
+      >
+        <i className="fa fa-shopping-cart"></i>
+        <span>Your Cart</span>
+        <div className="qty">0 </div>
+      </a>
+      {/* <div className="cart-dropdown">
 										<div className="cart-list">
 											<div className="product-widget">
 												<div className="product-img">
@@ -42,8 +46,8 @@ function Carrito() {
 											<a href="#">Checkout  <i className="fa fa-arrow-circle-right"></i></a>
 										</div>
 									</div> */}
-								</div>
-  )
+    </div>
+  );
 }
 
-export default Carrito
+export default Carrito;

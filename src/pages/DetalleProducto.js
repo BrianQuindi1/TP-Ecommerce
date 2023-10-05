@@ -14,7 +14,7 @@ function DetalleProducto(props) {
     
     //const { productos} = useContext(ProductosContext);    
     const {productId} = useParams();
-    let { addProduct } = useContext(CarritoContext);
+    const { addProduct } = useContext(CarritoContext);
    const [loading, setLoading] = useState(false);
 
 	const [productos, setProductos] = useState([]);
@@ -142,7 +142,7 @@ function DetalleProducto(props) {
     
                                 <div className="add-to-cart">
                                     
-                                    <button className="add-to-cart-btn"><i className="fa fa-shopping-cart" onClick={() => addProduct(productos)}></i> add to cart</button>
+                                    <button className="add-to-cart-btn" onClick={() => addProduct(productos)}> <i className="fa fa-shopping-cart"> </i> add to cart</button>
                                 </div>
     
                                 <ul className="product-btns">

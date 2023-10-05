@@ -18,7 +18,7 @@ export default function PaginaCarrito() {
           </div>
           <div className="">
             <h1>TOTAL: </h1>
-            <h1 style={{ color: "rgb(245, 181, 53)" }}>${totalPrice}</h1>
+            <h1 style={{ color: "red" }}>${totalPrice}</h1>
           </div>
         </div>
       </main>

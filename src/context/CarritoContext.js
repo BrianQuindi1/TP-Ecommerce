@@ -11,7 +11,12 @@ const CarritoProvider = (props) => {
   const [cantProductos, setCantProductos] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
 
+  const clearProducts = () => {
+    setProductos([])
+    localStorage.setItem(KEY_PRODUCTS, JSON.stringify([]));
+  }
   const addProduct = (producto) => {
+    console.log('hola')
     setProductos([
         ...productos,
         producto
@@ -26,10 +31,7 @@ const CarritoProvider = (props) => {
     })
     setTotalPrice(price);
   }
-  const clearProducts = () => {
-    setProductos([])
-    localStorage.setItem(KEY_PRODUCTS, JSON.stringify([]));
-  }
+ 
   useEffect(() => {
     setCantProductos(productos.length);  
     updateTotalPrice();
@@ -42,7 +44,8 @@ const CarritoProvider = (props) => {
           productos,
           addProduct,
           cantProductos,
-          totalPrice
+          totalPrice,
+          clearProducts
         }}
       >
         {props.children}
