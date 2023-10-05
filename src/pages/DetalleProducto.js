@@ -6,13 +6,15 @@ import Navigator from '../components/Navigator'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { ProductosContext } from '../context/ProductosContext'
+import { CarritoContext } from '../context/CarritoContext';
+import NewsLetter from '../components/NewsLetter'
 
 
 function DetalleProducto(props) {
     
     //const { productos} = useContext(ProductosContext);    
     const {productId} = useParams();
-   // const apiUrl = {};
+    let { addProduct } = useContext(CarritoContext);
    const [loading, setLoading] = useState(false);
 
 	const [productos, setProductos] = useState([]);
@@ -140,7 +142,7 @@ function DetalleProducto(props) {
     
                                 <div className="add-to-cart">
                                     
-                                    <button className="add-to-cart-btn"><i className="fa fa-shopping-cart"></i> add to cart</button>
+                                    <button className="add-to-cart-btn"><i className="fa fa-shopping-cart" onClick={() => addProduct(productos)}></i> add to cart</button>
                                 </div>
     
                                 <ul className="product-btns">
@@ -165,39 +167,7 @@ function DetalleProducto(props) {
             {/* /SECTION */}
     
             {/* NEWSLETTER */}
-            <div id="newsletter" className="section">
-                {/* container */}
-                <div className="container">
-                    {/* row */}
-                    <div className="row">
-                        <div className="col-md-12">
-                            <div className="newsletter">
-                                <p>Sign Up for the <strong>NEWSLETTER</strong></p>
-                                <form>
-                                    <input className="input" type="email" placeholder="Enter Your Email"/>
-                                    <button className="newsletter-btn"><i className="fa fa-envelope"></i> Subscribe</button>
-                                </form>
-                                <ul className="newsletter-follow">
-                                    <li>
-                                        <a href="#"><i className="fa fa-facebook"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i className="fa fa-twitter"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i className="fa fa-instagram"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i className="fa fa-pinterest"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    {/* /row */}
-                </div>
-                {/* /container */}
-            </div>
+            <NewsLetter/>
             {/* /NEWSLETTER */}
     
             {/* jQuery Plugins */}

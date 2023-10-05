@@ -7,9 +7,9 @@ function Carrito() {
 									<a className="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 										<i className="fa fa-shopping-cart"></i>
 										<span>Your Cart</span>
-										<div className="qty">3 </div>
+										<div className="qty">0 </div>
 									</a>
-									<div className="cart-dropdown">
+									{/* <div className="cart-dropdown">
 										<div className="cart-list">
 											<div className="product-widget">
 												<div className="product-img">
@@ -41,7 +41,7 @@ function Carrito() {
 											<a href="#">View Cart</a>
 											<a href="#">Checkout  <i className="fa fa-arrow-circle-right"></i></a>
 										</div>
-									</div>
+									</div> */}
 								</div>
   )
 }
