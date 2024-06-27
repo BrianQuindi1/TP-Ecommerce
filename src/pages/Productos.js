@@ -23,7 +23,7 @@ function Productos(props) {
 	useEffect(() => {
         setLoading(true)
 
-        if (productos !== null || productos !== undefined) {
+        if (productos != null || productos != undefined) {
             setLoading(false);
             setData(productos);
             setFilter(productos);
@@ -32,7 +32,7 @@ function Productos(props) {
     }, [productos])
 
 	const filterProduct = (category) => {
-        const updatedList = data.filter((product) => product.category === category);
+        const updatedList = data.filter((product) => product.category == category);
         setFilter(updatedList);
     }
 
@@ -77,14 +77,14 @@ function Productos(props) {
 							<h3 className="aside-title">Categories</h3>
 							<div className="checkbox-filter">
 							
-							<FilterOption onClickFunction={() => setFilter(data)} text="All" />
-                            {categorias.map((categoria, index) => {
+							 <FilterOption onClickFunction={() => setFilter(data)} text="All" />
+                            {categorias.map((category) => {
                                 return (
                                     <>
-                                		<FilterOption onClickFunction={() => filterProduct(categoria)} text={categoria} key={index} />
+                                		<FilterOption onClickFunction={() => filterProduct(category)} text={category.name} />
                                     </>
 								)
-                            })}															
+                            })}	 
 							</div>
 						</div>
 						{/* /aside Widget */}

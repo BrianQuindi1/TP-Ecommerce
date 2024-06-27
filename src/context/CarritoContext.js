@@ -37,7 +37,7 @@ const CarritoProvider = (props) => {
     updateTotalPrice();
   }, [productos]);
 
-  if (productos !== []) {
+  if (productos != []) {
     return (
       <CarritoContext.Provider
         value={{
